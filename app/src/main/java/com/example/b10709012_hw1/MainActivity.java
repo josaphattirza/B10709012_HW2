@@ -1,5 +1,6 @@
 package com.example.b10709012_hw1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,17 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import javax.xml.transform.Result;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -135,5 +133,24 @@ public class MainActivity extends AppCompatActivity {
         adapter = new RecyclerViewAdapter(this, mText, checkedMain);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int menuItemThatWasSelected = item.getItemId();
+        if(menuItemThatWasSelected == R.id.add) {
+            Toast.makeText(this, "add",Toast.LENGTH_LONG).show();
+        }
+        else if (menuItemThatWasSelected == R.id.setting) {
+            Toast.makeText(this,"setting",Toast.LENGTH_LONG).show();
+
+        }
+        return true;
     }
 }

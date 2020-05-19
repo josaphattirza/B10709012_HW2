@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">B10709012_HW1</string>
+    <string name="app_name">B10709012_HW2</string>
+    <string name="menuAdd">Add</string>
+    <string name="menuSetting">Setting</string>
 </resources>
