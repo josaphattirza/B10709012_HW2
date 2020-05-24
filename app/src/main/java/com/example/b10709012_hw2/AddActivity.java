@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.b10709012_hw2.data.WaitListContract;
@@ -50,8 +51,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
-
-        getIncomingIntent();
     }
 
     private void getIncomingIntent() {

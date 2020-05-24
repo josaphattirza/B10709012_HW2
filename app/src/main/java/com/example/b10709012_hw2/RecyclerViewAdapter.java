@@ -1,7 +1,9 @@
 package com.example.b10709012_hw2;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +15,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b10709012_hw2.data.WaitListContract;
@@ -85,7 +90,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public class GuestViewHolder extends RecyclerView.ViewHolder{
+    public class GuestViewHolder extends RecyclerView.ViewHolder implements SharedPreferences.OnSharedPreferenceChangeListener{
 
         // Will display the guest name
         TextView nameTextView;
@@ -99,8 +104,44 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             nameTextView = (TextView) itemView.findViewById(R.id.name_text_view);
             partySizeTextView = (TextView) itemView.findViewById(R.id.party_size_text_view);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+
+            setupSharedPreferences();
+
+
+            //deprecated CONTEXT.getResource().getColor()
+//            partySizeTextView.getBackground().setTint(mContext.getResources().getColor(R.color.shapeRed));
+        }
+
+        public void setupSharedPreferences() {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+            loadColorFromPreferences(sharedPreferences);
+
+            sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        }
+
+        private void loadColorFromPreferences(SharedPreferences sharedPreferences) {
+            String background_chooser = sharedPreferences.getString(mContext.getString(R.string.pref_color_key),
+                    mContext.getString(R.string.pref_color_red_value));
+
+            if(background_chooser.equals("red")){
+                partySizeTextView.getBackground().setTint(ContextCompat.getColor(mContext, R.color.shapeRed));
+            }
+
+            else if(background_chooser.equals("blue")){
+                partySizeTextView.getBackground().setTint(ContextCompat.getColor(mContext, R.color.shapeBlue));
+            }
+
+            else if(background_chooser.equals("green")){
+                partySizeTextView.getBackground().setTint(ContextCompat.getColor(mContext, R.color.shapeGreen));
+            }
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            if(key.equals(mContext.getString(R.string.pref_color_key))) {
+                loadColorFromPreferences(sharedPreferences);
+            }
         }
     }
-
 
 }

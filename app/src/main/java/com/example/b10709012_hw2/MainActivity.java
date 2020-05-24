@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -93,16 +94,35 @@ public class MainActivity extends AppCompatActivity {
             }
             // Override onSwiped
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                // COMPLETED (8) Inside, get the viewHolder's itemView's tag and store in a long variable id
-                //get the id of the item being swiped
-                long id = (long) viewHolder.itemView.getTag();
-                // COMPLETED (9) call removeGuest and pass through that id
-                //remove from DB
-                removeGuest(id);
-                // COMPLETED (10) call swapCursor on mAdapter passing in getAllGuests() as the argument
-                //update the list
-                adapter.swapCursor(getAllGuests());
+            public void onSwiped(final RecyclerView.ViewHolder viewHolder, int swipeDir) {
+
+                AlertDialog a = new AlertDialog.Builder(MainActivity.this).create();
+                a.setTitle("Confirmation");
+                a.setMessage("Are you sure?");
+                a.setButton(DialogInterface.BUTTON_POSITIVE, "Ok",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // COMPLETED (8) Inside, get the viewHolder's itemView's tag and store in a long variable id
+                            //get the id of the item being swiped
+                            long id = (long) viewHolder.itemView.getTag();
+                            // COMPLETED (9) call removeGuest and pass through that id
+                            //remove from DB
+                            removeGuest(id);
+                            // COMPLETED (10) call swapCursor on mAdapter passing in getAllGuests() as the argument
+                            //update the list
+                            adapter.swapCursor(getAllGuests());
+                        }
+                    });
+                a.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            adapter.swapCursor(getAllGuests());
+                            dialog.dismiss();
+                        }
+                    });
+                a.show();
             }
 
             //COMPLETED (11) attach the ItemTouchHelper to the waitlistRecyclerView
@@ -139,12 +159,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int menuItemThatWasSelected = item.getItemId();
         if(menuItemThatWasSelected == R.id.add) {
-            Toast.makeText(this, "add",Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "add",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, AddActivity.class);
             startActivity(intent);
         }
-        else if (menuItemThatWasSelected == R.id.setting) {
-            Toast.makeText(this,"setting",Toast.LENGTH_LONG).show();
+        else if (menuItemThatWasSelected == R.id.settings) {
+//            Toast.makeText(this,"setting",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
         return true;
     }
