@@ -54,10 +54,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (!mCursor.moveToPosition(position))
             return; // bail if returned null
 
-        // COMPLETED (6) Call getString on the cursor to get the guest's name
+        // Call getString on the cursor to get the guest's name
         String name = mCursor.getString(mCursor.getColumnIndex(WaitListContract.WaitListEntry.COLUMN_GUEST_NAME));
 
-        // COMPLETED (7) Call getInt on the cursor to get the party size
+        // Call getInt on the cursor to get the party size
         int partySize = mCursor.getInt(mCursor.getColumnIndex(WaitListContract.WaitListEntry.COLUMN_PARTY_SIZE));
         long id = mCursor.getLong(mCursor.getColumnIndex(WaitListContract.WaitListEntry._ID));
 

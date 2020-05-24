@@ -12,15 +12,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:hint="Guest name"
         android:inputType="textPersonName|textCapWords">
     </androidx.appcompat.widget.AppCompatEditText>
 
-    <android.inputmethodservice.ExtractEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/party_count_edit_text"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:inputType="number">
-    </android.inputmethodservice.ExtractEditText>
+        android:inputType="number"
+        android:gravity="center">
+    </androidx.appcompat.widget.AppCompatEditText>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton

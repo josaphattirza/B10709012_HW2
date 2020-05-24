@@ -103,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // COMPLETED (8) Inside, get the viewHolder's itemView's tag and store in a long variable id
+                            // Inside, get the viewHolder's itemView's tag and store in a long variable id
                             //get the id of the item being swiped
                             long id = (long) viewHolder.itemView.getTag();
-                            // COMPLETED (9) call removeGuest and pass through that id
+                            // call removeGuest and pass through that id
                             //remove from DB
                             removeGuest(id);
-                            // COMPLETED (10) call swapCursor on mAdapter passing in getAllGuests() as the argument
+                            // call swapCursor on mAdapter passing in getAllGuests() as the argument
                             //update the list
                             adapter.swapCursor(getAllGuests());
                         }
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 a.show();
             }
 
-            //COMPLETED (11) attach the ItemTouchHelper to the waitlistRecyclerView
+            // Attach the ItemTouchHelper to the waitlistRecyclerView
         }).attachToRecyclerView(recyclerView);
     }
 
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
      * @return Cursor containing the list of guests
      */
     private Cursor getAllGuests() {
-        // COMPLETED (6) Inside, call query on mDb passing in the table name and projection String [] order by COLUMN_TIMESTAMP
+        // Inside, call query on mDb passing in the table name and projection String [] order by COLUMN_TIMESTAMP
         return mDb.query(
                 WaitListContract.WaitListEntry.TABLE_NAME,
                 null,
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // COMPLETED (1) Create a new function called removeGuest that takes long id as input and returns a boolean
+    // Create a new function called removeGuest that takes long id as input and returns a boolean
     /**
      * Removes the record with the specified id
      *
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
      * @return True: if removed successfully, False: if failed
      */
     private boolean removeGuest(long id) {
-        // COMPLETED (2) Inside, call mDb.delete to pass in the TABLE_NAME and the condition that WaitlistEntry._ID equals id
+        // Inside, call mDb.delete to pass in the TABLE_NAME and the condition that WaitlistEntry._ID equals id
         return mDb.delete(WaitListContract.WaitListEntry.TABLE_NAME, WaitListContract.WaitListEntry._ID + "=" + id, null) > 0;
     }
 }

@@ -42,7 +42,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         WaitListDbHelper dbHelper = new WaitListDbHelper(this);
         mDb = dbHelper.getWritableDatabase();
 
-        // COMPLETED (2) Set the Edit texts to the corresponding views using findViewById
+        // Set the Edit texts to the corresponding views using findViewById
         mNewGuestNameEditText = (EditText) this.findViewById(R.id.person_name_edit_text);
         mNewPartySizeEditText = (EditText) this.findViewById(R.id.party_count_edit_text);
 
