@@ -1,4 +1,4 @@
-package com.example.b10709012_hw1;
+package com.example.b10709012_hw2;
 
 import org.junit.Test;
 

@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="56dp"
+    android:gravity="center_vertical"
     android:id="@+id/parent_layout">
 
-    <androidx.appcompat.widget.AppCompatCheckBox
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/party_size_text_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/circle"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:text="@string/default_party_size"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="abcdef"
-        android:textSize="20dp"
-        android:id="@+id/checkb_view"
-        >
-    </androidx.appcompat.widget.AppCompatCheckBox>
+        android:layout_marginLeft="16dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/default_guest_name"
+        android:layout_toRightOf="@id/party_size_text_view"/>
 
 
-</RelativeLayout>
+</LinearLayout>
