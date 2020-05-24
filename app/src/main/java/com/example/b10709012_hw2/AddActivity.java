@@ -131,7 +131,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
         // Call put to insert the party size value with the key COLUMN_PARTY_SIZE
         cv.put(WaitListContract.WaitListEntry.COLUMN_PARTY_SIZE, partySize);
-
+        
         //Call insert to run an insert query on TABLE_NAME with the ContentValues created
         return mDb.insert(WaitListContract.WaitListEntry.TABLE_NAME, null, cv);
     }
